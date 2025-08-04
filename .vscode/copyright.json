@@ -1,0 +1,8 @@
+{
+    "scopes": [
+        {
+            "pattern": "src/.*.scala",
+            "template": ".vscode/copyright.js"
+        }
+    ]
+}
