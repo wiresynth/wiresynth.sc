@@ -7,6 +7,7 @@ import scala.annotation.targetName
 
 trait BasicPart extends Part {
   val value: Quantity
+  val prefix: String
 }
 
 trait Polar2T extends BasicPart {

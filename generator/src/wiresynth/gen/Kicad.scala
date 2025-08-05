@@ -23,10 +23,13 @@ class Kicad(e: Elaboration, path: String) {
        |(components
        |""".stripMargin)
     e.parts.foreach { part =>
+      if part.footprint.isEmpty then {
+        println(s"Missing footprint: ${part.canonicalName}")
+      }
       c.append(s"""
          |(comp (ref "${part.canonicalName}")
-         |(value ${part.valueLiteral})
-         |(footprint ${part.footprint})
+         |(value "${part.valueLiteral}")
+         |(footprint "${part.footprint}")
          |)
          |""".stripMargin)
     }
@@ -38,25 +41,20 @@ class Kicad(e: Elaboration, path: String) {
           netName = pin.canonicalName
         }
       }
-      c.append(
-        s"(net (code $i) (name $netName)\n"
-      )
+      c.append(s"""(net (code $i) (name "$netName")\n""")
       net.partPins.foreach { pin =>
-        pin.pos.foreach { pos =>
+        pin.pos.foreach(pos =>
           c.append(
-            s"(node (ref ${pin.part.get.canonicalName}) (pin ${pos}))\n"
+            s"""(node (ref "${pin.part.get.canonicalName}") (pin "$pos"))\n"""
           )
-        }
+        )
       }
       c.append(")\n")
     }
     c.append("))")
   }
 
-  Files.write(
-    Paths.get(path),
-    netlist.getBytes(StandardCharsets.UTF_8)
-  )
+  Files.write(Paths.get(path), netlist.getBytes(StandardCharsets.UTF_8))
 
   println("Netlist generated successfully.")
 }

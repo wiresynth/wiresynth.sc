@@ -6,9 +6,9 @@ package wiresynth.dsl
 trait Part extends Component {
   override val isPart = true
 
-  val valueLiteral = "Nil"
+  val valueLiteral = ""
 
-  var footprint = "Nil"
+  var footprint = ""
 
   infix def packageIn(f: String): this.type = {
     footprint = f

@@ -49,9 +49,9 @@ class MarkPhase extends PluginPhase {
 
     if owner.typeRef.derivesFrom(dataTrait) then {
       // val A = {
-      //   val data = Data()
+      //   val data = Data().autoMark("A")
       //   this.addChild(data)
-      //   data.autoMark("A")
+      //   data
       // }
       cpy.ValDef(tree)(rhs =
         tpd.Block(

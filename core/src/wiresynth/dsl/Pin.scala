@@ -63,16 +63,12 @@ case class Pin() extends Data {
 
   @targetName("connectNeutral2T")
   infix def <>(part: Neutral2T): Pin = {
-    children += part
-
     part.A <> this
     part.B
   }
 
   @targetName("connectPolar2TLhs")
   infix def -|+(part: Polar2T): Polar2T = {
-    children += part
-
     part.P <> this
     part
   }

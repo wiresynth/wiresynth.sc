@@ -25,6 +25,25 @@ Building DSL on a host language with full LSP support is more effective than lau
 
 This is why I chose Scala.
 
+## Setup
+
+### sbt
+
+Use WireSynth.sc in your Scala project.
+You have to add dependencies including a compiler plugin.
+
+`lib-kicad` contains parts and footprints authored by KiCad.
+They are transformed into Scala source code.
+
+```scala
+libraryDependencies ++= Seq(
+  "io.github.wiresynth.sc" %% "core" % coreVersion,
+  "io.github.wiresynth.sc" %% "generator" % coreVersion,
+  "io.github.wiresynth.sc" %% "lib-kicad" % "0.9.1",
+  compilerPlugin("io.github.wiresynth.sc" %% "plugin" % coreVersion)
+)
+```
+
 ## Overview
 
 #### Supported EDAs
