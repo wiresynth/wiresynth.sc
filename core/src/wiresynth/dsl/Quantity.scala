@@ -10,6 +10,13 @@ trait Quantity {
   def toLiteral: String
 }
 
+object Quantity {
+  case class Nil() extends Quantity {
+    val value = 0
+    override def toLiteral: String = "Nil"
+  }
+}
+
 class Voltage(v: Double, exp: Int) extends Quantity {
   val value = v * pow(10, exp)
 

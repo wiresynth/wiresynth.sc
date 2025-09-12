@@ -11,8 +11,9 @@ trait BasicPart extends Part {
 }
 
 trait Polar2T extends BasicPart {
-  val P = Pin() @@ 1
-  val N = Pin() @@ 2
+  // Fit the order in KiCad footprint library.
+  val N = Pin() @@ 1
+  val P = Pin() @@ 2
 
   @targetName("connectPinRhs")
   infix def |-(pin: Pin): Pin = {
